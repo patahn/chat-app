@@ -1,0 +1,41 @@
+const socket = new WebSocket('ws://localhost:5501');
+const messageList = document.querySelector("ul")
+const messageForm = document.querySelector("#msg");
+const nickForm = document.querySelector("#nn");
+
+function makeMsg(type, payload){
+    const msg = {type, payload};
+    return JSON.stringify(msg);
+}
+
+socket.addEventListener('open', () => {
+    console.log("Connected to server");
+});
+
+socket.addEventListener('message', (msg) => {
+    console.log(`${msg.data}`);
+});
+
+socket.addEventListener('close', () => {
+    console.log("Disconnected to the server");
+});
+
+messageForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = messageForm.querySelector("input");
+    console.log(input.value);
+    socket.send(makeMsg("new_message", input.value));
+    input.value = '';
+});
+
+socket.addEventListener('message', (message) => {
+    const li = document.createElement('li');
+    li.innerText = message.data;
+    messageList.prepend(li);
+});
+
+nickForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = nickForm.querySelector('input');
+    socket.send(makeMsg("nickname", input.value));
+});
