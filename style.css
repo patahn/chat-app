@@ -1,0 +1,16 @@
+div {
+    text-align: center;
+}
+
+li {
+    list-style: none;
+    font-size: 20px;
+}
+
+* {
+    text-align: center;
+}
+
+body {
+    background-color: tomato;
+}

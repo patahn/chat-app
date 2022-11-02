@@ -29,9 +29,17 @@ messageForm.addEventListener('submit', (event) => {
 });
 
 socket.addEventListener('message', (message) => {
+    const br = document.createElement("br");
+    const div = document.createElement("div");
     const li = document.createElement('li');
+    div.prepend(li);
     li.innerText = message.data;
-    messageList.prepend(li);
+    messageList.prepend(div);
+    messageList.prepend(br);
+
+    if(li.innerText.length >= screen.width){
+        li.appendChild(br);
+    }
 });
 
 nickForm.addEventListener('submit', (event) => {
