@@ -32,6 +32,7 @@ socket.addEventListener('message', (message) => {
     const br = document.createElement("br");
     const div = document.createElement("div");
     const li = document.createElement('li');
+    div.classList.add("msg");
     div.prepend(li);
     li.innerText = message.data;
     messageList.prepend(div);

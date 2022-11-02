@@ -12,5 +12,10 @@ li {
 }
 
 body {
+    background-color: white;
+}
+
+.msg {
     background-color: tomato;
+    border-radius: 10px;
 }
