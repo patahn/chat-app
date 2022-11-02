@@ -18,4 +18,5 @@ body {
 .msg {
     background-color: tomato;
     border-radius: 10px;
+    text-align: center;
 }
