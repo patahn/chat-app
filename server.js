@@ -13,9 +13,6 @@ const socket = new WebSocketServer({port:5501});
 const sockets = [];
 socket.on('connection', (socket) => {
   sockets.push(socket);
-  sockets.forEach((aSocket) => {
-    aSocket.send(`${socket.nickname}: ${msg}`);
-  })
   socket["nickname"] = "Anon";
   console.log("Connected to client");
    socket.on('close', () => 
