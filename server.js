@@ -20,6 +20,9 @@ socket.on('connection', (socket) => {
    );
    socket.on('message', (msg) => {
       const message = JSON.parse(msg);
+      msg.forEach(() => {
+        sockets.send(`${socket.nickname}: ${message.payload}`);
+      })
 
       switch(message.type){
         case "new_message":
