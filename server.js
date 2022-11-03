@@ -12,6 +12,9 @@ const socket = new WebSocketServer({port:5501});
 
 const sockets = [];
 socket.on('connection', (socket) => {
+  sockets.forEach((aSocket) => {
+    aSocket.send(`${socket.nickname}: ${msg}`);
+  })
   sockets.push(socket);
   socket["nickname"] = "Anon";
   console.log("Connected to client");
@@ -20,9 +23,6 @@ socket.on('connection', (socket) => {
    );
    socket.on('message', (msg) => {
       const message = JSON.parse(msg);
-      sockets.forEach((aSocket) => {
-        aSocket.send(`${socket.nickname}: ${msg}`);
-      })
 
       switch(message.type){
         case "new_message":
