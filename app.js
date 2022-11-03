@@ -23,7 +23,6 @@ socket.addEventListener('close', () => {
 messageForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const input = messageForm.querySelector("input");
-    console.log(input.value);
     socket.send(makeMsg("new_message", input.value));
     input.value = '';
 });
